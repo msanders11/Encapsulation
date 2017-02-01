@@ -39,18 +39,18 @@ public class Employee {
     // would only do this once, upon being hired.
     private void meetWithHrForBenefitAndSalryInfo() {
         metWithHr = true;
-        this.getFormatedDate();
+        
         System.out.println(firstName + " " + lastName + " met with Hr on "
-                + orientationDate);
+                + this.getFormatedDate());
     }
 
     // Assume this must be performed second, and assume that an employee
     // would only do this once, upon being hired.:
     private void meetDepartmentStaff() {
         metDeptStaff = true;
-        this.getFormatedDate();
+        
         System.out.println(firstName + " " + lastName + " met with Dept. Staff on "
-                + orientationDate);
+                + this.getFormatedDate());
     }
 
     // Assume this must be performed third. And assume that because department
@@ -58,9 +58,9 @@ public class Employee {
     // independently from other classes.
     public void reviewDeptPolicies() {
         reviewedDeptPolicies = true;
-        this.getFormatedDate();
+        
         System.out.println(firstName + " " + lastName + " reviewed Dept policies on "
-                + orientationDate);
+                + this.getFormatedDate());
     }
 
     // Assume this must be performed 4th. And assume that because employees
@@ -69,9 +69,9 @@ public class Employee {
     public void moveIntoCubicle(String cubeId) {
         this.cubeId = cubeId;
         this.movedIn = true;
-        this.getFormatedDate();
+        
         System.out.println(firstName + " " + lastName + " moved into cubicle "
-                + cubeId + " on " + orientationDate);
+                + cubeId + " on " + this.getFormatedDate());
     }
 
     private String getFormatedDate() {
