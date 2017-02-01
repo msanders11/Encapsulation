@@ -4,22 +4,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * In this lab focus on METHOD encapsulation and fix/add code as necessary.
- * Pay special attention to the following issues:
- *    1. Not all methods need to be public
- *    2. When methods need to be called in a certain order you can do this
- *       by creating a parent method that calls the other, helper methods.
- *    3. There is some duplicate code used that violates the D.R.Y. principle.
- *       Eliminate that by encapsulating the duplicate code in a new method
- *       and then call that method in place of the duplicate code
- *    4. All method parameters should be validated.
- * 
+ * In this lab focus on METHOD encapsulation and fix/add code as necessary. Pay
+ * special attention to the following issues: 1. Not all methods need to be
+ * public 2. When methods need to be called in a certain order you can do this
+ * by creating a parent method that calls the other, helper methods. 3. There is
+ * some duplicate code used that violates the D.R.Y. principle. Eliminate that
+ * by encapsulating the duplicate code in a new method and then call that method
+ * in place of the duplicate code 4. All method parameters should be validated.
+ *
  * Review the tips in the document "EncapCheckList.pdf" if needed.
  *
- * @author      Jim Lombardo, WCTC Instructor
- * @version     1.02
+ * @author Jim Lombardo, WCTC Instructor
+ * @version 1.02
  */
 public class Employee {
+
     private String firstName;
     private String lastName;
     private String ssn;
@@ -38,22 +37,20 @@ public class Employee {
 
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.
-    public void meetWithHrForBenefitAndSalryInfo() {
+    private void meetWithHrForBenefitAndSalryInfo() {
         metWithHr = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
+        this.getFormatedDate();
         System.out.println(firstName + " " + lastName + " met with Hr on "
-            + fmtDate);
+                + orientationDate);
     }
 
-    // Assume this must be performed first, and assume that an employee
+    // Assume this must be performed second, and assume that an employee
     // would only do this once, upon being hired.:
-    public void meetDepartmentStaff() {
+    private void meetDepartmentStaff() {
         metDeptStaff = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
+        this.getFormatedDate();
         System.out.println(firstName + " " + lastName + " met with Dept. Staff on "
-            + fmtDate);
+                + orientationDate);
     }
 
     // Assume this must be performed third. And assume that because department
@@ -61,10 +58,9 @@ public class Employee {
     // independently from other classes.
     public void reviewDeptPolicies() {
         reviewedDeptPolicies = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
+        this.getFormatedDate();
         System.out.println(firstName + " " + lastName + " reviewed Dept policies on "
-            + fmtDate);
+                + orientationDate);
     }
 
     // Assume this must be performed 4th. And assume that because employees
@@ -73,10 +69,21 @@ public class Employee {
     public void moveIntoCubicle(String cubeId) {
         this.cubeId = cubeId;
         this.movedIn = true;
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(orientationDate);        
+        this.getFormatedDate();
         System.out.println(firstName + " " + lastName + " moved into cubicle "
-                + cubeId + " on " + fmtDate);
+                + cubeId + " on " + orientationDate);
+    }
+
+    private String getFormatedDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
+        return sdf.format(orientationDate);
+    }
+
+    private void startFirstDay(String cubeId) {
+        this.meetWithHrForBenefitAndSalryInfo();
+        this.meetDepartmentStaff();
+        this.reviewDeptPolicies();
+        this.moveIntoCubicle(cubeId);
     }
 
     public String getFirstName() {
@@ -85,17 +92,26 @@ public class Employee {
 
     // setter methods give the developer the power to control what data is
     // allowed through validation.
-    
     public void setFirstName(String firstName) {
-       this.firstName = firstName;
+        if (firstName == null || firstName.length() < 2) {
+            System.out.println("Please enter your first name");
+        } else {
+            this.firstName = firstName;
+        }
     }
+
+    
 
     public String getLastName() {
         return lastName;
     }
 
     public void setLastName(String lastName) {
-       this.lastName = lastName;
+        if(lastName == null || lastName.length() < 2){
+            System.out.println("Please enter your last name");
+        }else{
+            this.lastName = lastName;
+        }
     }
 
     public String getSsn() {
@@ -103,7 +119,11 @@ public class Employee {
     }
 
     public void setSsn(String ssn) {
-        this.ssn = ssn;
+        if(ssn == null || ssn.length() != 8){
+            System.out.println("enter a valid ssn");
+        }else{
+            this.ssn = ssn;
+        }
     }
 
     public boolean isMetWithHr() {
@@ -143,7 +163,6 @@ public class Employee {
         return cubeId;
     }
 
-    
     public void setCubeId(String cubeId) {
         this.cubeId = cubeId;
     }
@@ -154,4 +173,5 @@ public class Employee {
 
     public void setOrientationDate(Date orientationDate) {
         this.orientationDate = orientationDate;
-    }}
+    }
+}
