@@ -6,9 +6,11 @@ package lab3;
  */
 public class EmployeeReportService {
     
-    public void doOutput(String msg) {
+    public void produceOutput(String msg) {
         System.out.println(msg);
     }
+    
+
     //instantiate an Employee object
 //    private Employee employee;
 //
@@ -16,7 +18,7 @@ public class EmployeeReportService {
 //        this.employee = employee;
 //    }
 //    
-//    
+//
 //    //create employee output messages
 //    public void metWithHRMessage(){
 //        System.out.println(employee.getFirstName() + " " + employee.getLastName() + " met with HR on " + employee.getFormattedDate());
@@ -26,7 +28,7 @@ public class EmployeeReportService {
 //        System.out.println(employee.getFirstName() + " " + employee.getLastName() + " met with Dept. Staff on " + employee.getFormattedDate() );
 //    }
 //    
-//    public void reviewedDepartmentPolicies(){
+//    public void reviewedDepartmentPoliciesMessage(){
 //        System.out.println(employee.getFirstName() + " " + employee.getLastName() + " reviewed Dept. policies on " + employee.getFormattedDate());
 //    }
 //    
