@@ -5,12 +5,14 @@ import java.util.Date;
 
 /**
  * In this lab focus on METHOD encapsulation and fix/add code as necessary. Pay
- * special attention to the following issues: 1. Not all methods need to be
- * public 2. When methods need to be called in a certain order you can do this
- * by creating a parent method that calls the other, helper methods. 3. There is
- * some duplicate code used that violates the D.R.Y. principle. Eliminate that
+ * special attention to the following issues: 
+ * 1. Not all methods need to be public 
+ * 2. When methods need to be called in a certain order you can do this
+ * by creating a parent method that calls the other, helper methods.
+ * 3. There is some duplicate code used that violates the D.R.Y. principle. Eliminate that
  * by encapsulating the duplicate code in a new method and then call that method
- * in place of the duplicate code 4. All method parameters should be validated.
+ * in place of the duplicate code 
+ * 4. All method parameters should be validated.
  *
  * Review the tips in the document "EncapCheckList.pdf" if needed.
  *
@@ -30,27 +32,26 @@ public class Employee {
     private Date orientationDate;
 
     public Employee(String firstName, String lastName, String ssn) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.ssn = ssn;
+        //use setter methods to validate parameters from constructors 
+        setFirstName(firstName);
+        setLastName(lastName);
+        setSsn(ssn);
     }
 
     // Assume this must be performed first, and assume that an employee
     // would only do this once, upon being hired.
     private void meetWithHrForBenefitAndSalryInfo() {
         metWithHr = true;
-        
         System.out.println(firstName + " " + lastName + " met with Hr on "
-                + this.getFormatedDate());
+                + getFormatedDate());
     }
 
     // Assume this must be performed second, and assume that an employee
     // would only do this once, upon being hired.:
     private void meetDepartmentStaff() {
         metDeptStaff = true;
-        
         System.out.println(firstName + " " + lastName + " met with Dept. Staff on "
-                + this.getFormatedDate());
+                + getFormatedDate());
     }
 
     // Assume this must be performed third. And assume that because department
@@ -58,9 +59,8 @@ public class Employee {
     // independently from other classes.
     public void reviewDeptPolicies() {
         reviewedDeptPolicies = true;
-        
         System.out.println(firstName + " " + lastName + " reviewed Dept policies on "
-                + this.getFormatedDate());
+                + getFormatedDate());
     }
 
     // Assume this must be performed 4th. And assume that because employees
@@ -69,16 +69,17 @@ public class Employee {
     public void moveIntoCubicle(String cubeId) {
         this.cubeId = cubeId;
         this.movedIn = true;
-        
         System.out.println(firstName + " " + lastName + " moved into cubicle "
-                + cubeId + " on " + this.getFormatedDate());
+                + cubeId + " on " + getFormatedDate());
     }
 
+    //helper method to get formatted data that is used in many methods
     private String getFormatedDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
         return sdf.format(orientationDate);
     }
 
+    
     private void startFirstDay(String cubeId) {
         this.meetWithHrForBenefitAndSalryInfo();
         this.meetDepartmentStaff();
