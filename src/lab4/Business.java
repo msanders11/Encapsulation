@@ -18,7 +18,8 @@ public class Business {
     }
     
     public void hireNewEmployee(String firstName, String lastName, String ssn){
-        hrManager.hireNewEmployee( firstName, lastName, ssn);
+        hrManager.hireEmployee( firstName, lastName, ssn);
+        hrManager.outputReport();
     }
 
     public HumanResourceManager getHrManager() {

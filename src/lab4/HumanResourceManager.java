@@ -10,19 +10,26 @@ package lab4;
  * @author Mike
  */
 public class HumanResourceManager {
-    private Employee employee;
-    
-     public void hireNewEmployee(String firstName, String lastName, String ssn){
-            employee.setFirstName(firstName);
-            employee.setLastName(lastName);
-            employee.setSsn(ssn);
-            
-        }
-     
-     public void startOrientationForNewEmployee(Employee employee){
-         employee.doFirstTimeOrientation("L110");
-     }
 
+    private Employee employee;
+
+    public void hireEmployee(String firstName, String lastName, String ssn) {
+        Employee employee = new Employee(firstName, lastName, ssn);
+        employee.setFirstName(firstName);
+        employee.setLastName(lastName);
+        employee.setSsn(ssn);
+        this.startOrientationForNewEmployee(employee);
+    }
+
+    public void startOrientationForNewEmployee(Employee employee) {
+        employee.doFirstTimeOrientation("L110");
+    }
+
+    public void outputReport() {
+        if (employee.isMetWithHr() && employee.isReviewedDeptPolicies() && employee.isMetDeptStaff() && employee.isMovedIn()) {
+         employee.getReportService().outputReport();
+        }
+     }
     public Employee getEmployee() {
         return employee;
     }
@@ -30,6 +37,5 @@ public class HumanResourceManager {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-    
 
 }
