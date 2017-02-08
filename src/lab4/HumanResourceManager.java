@@ -15,21 +15,23 @@ public class HumanResourceManager {
 
     public void hireEmployee(String firstName, String lastName, String ssn) {
         Employee employee = new Employee(firstName, lastName, ssn);
-        employee.setFirstName(firstName);
-        employee.setLastName(lastName);
-        employee.setSsn(ssn);
+        //employee.setFirstName(firstName);
+        //employee.setLastName(lastName);
+        //employee.setSsn(ssn);
         this.startOrientationForNewEmployee(employee);
+        employee.getReportService().outputReport();
     }
 
     public void startOrientationForNewEmployee(Employee employee) {
         employee.doFirstTimeOrientation("L110");
     }
 
-    public void outputReport() {
-        if (employee.isMetWithHr() && employee.isReviewedDeptPolicies() && employee.isMetDeptStaff() && employee.isMovedIn()) {
-         employee.getReportService().outputReport();
-        }
-     }
+//    public void outputReport() {
+//        if (employee.isMetWithHr() && employee.isReviewedDeptPolicies() && employee.isMetDeptStaff() && employee.isMovedIn()) {
+//         employee.getReportService().outputReport();
+//        }
+//     }
+    
     public Employee getEmployee() {
         return employee;
     }
